@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 public class GamePlayActivity extends AppCompatActivity {
-    private static final long START_TIME_IN_MILLIS = 600000;
+    private static final long START_TIME_IN_MILLIS = 60000;
 
     private TextView countdownText;
     private CountDownTimer countDownTimer;
@@ -20,6 +22,7 @@ public class GamePlayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_play);
 
         countdownText = findViewById(R.id.countdownText);
+        startTimer();
 
 
     }
@@ -34,7 +37,7 @@ public class GamePlayActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-
+                timeRunning = false;
             }
         }.start();
 
@@ -45,7 +48,9 @@ public class GamePlayActivity extends AppCompatActivity {
         int minutes = (int) (timeLeftInMillis / 1000) / 60;
         int seconds = (int) (timeLeftInMillis / 1000) % 60;
 
-        String timeLeftFormatted = String.format("%02d:%02d", minutes, seconds);
+        String timeLeftFormatted = String.format(Locale.getDefault(),"%02d:%02d", minutes, seconds);
+
+        countdownText.setText(timeLeftFormatted);
     }
 
 
