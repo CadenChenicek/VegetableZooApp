@@ -47,55 +47,48 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/letterSpace1"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="#2196F3"
-                    android:gravity="center"
-                    android:textSize="36sp" />
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/blue" />
 
                 <Space
                     android:layout_width="20dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/letterSpace2"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:background="#2196F3"
-                    android:gravity="center"
-                    android:textSize="36sp" />
+                    app:srcCompat="@drawable/blue" />
 
                 <Space
                     android:layout_width="20dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/letterSpace3"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:background="#2196F3"
-                    android:gravity="center"
-                    android:textSize="36sp" />
+                    app:srcCompat="@drawable/blue" />
 
                 <Space
                     android:layout_width="20dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/letterSpace4"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:background="#2196F3"
-                    android:gravity="center"
-                    android:textSize="36sp" />
+                    app:srcCompat="@drawable/blue" />
 
             </LinearLayout>
 
@@ -126,59 +119,48 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/letter1"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="#FF5722"
-                    android:gravity="center"
-                    android:text="A"
-                    android:textSize="36sp" />
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/red" />
 
                 <Space
                     android:layout_width="20dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/letter2"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:background="#FF5722"
-                    android:gravity="center"
-                    android:text="B"
-                    android:textSize="36sp" />
+                    app:srcCompat="@drawable/red" />
 
                 <Space
                     android:layout_width="20dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/letter3"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:background="#FF5722"
-                    android:gravity="center"
-                    android:text="C"
-                    android:textSize="36sp" />
+                    app:srcCompat="@drawable/red" />
 
                 <Space
                     android:layout_width="20dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/letter4"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:background="#FF5722"
-                    android:gravity="center"
-                    android:text="D"
-                    android:textSize="36sp" />
+                    app:srcCompat="@drawable/red" />
 
             </LinearLayout>
 
