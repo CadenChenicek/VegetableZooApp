@@ -22,6 +22,19 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="10:00" />
 
+    <TextView
+        android:id="@+id/test1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginEnd="314dp"
+        android:layout_marginBottom="91dp"
+        android:text="yo"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countdownText" />
+
     <TableLayout
         android:id="@+id/tableLayout2"
         android:layout_width="400dp"
@@ -47,48 +60,56 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <ImageView
+                <TextView
                     android:id="@+id/letterSpace1"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/blue" />
+                    android:background="#2196F3"
+                    android:gravity="center"
+                    android:textSize="36sp" />
 
                 <Space
                     android:layout_width="20dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <ImageView
+                <TextView
                     android:id="@+id/letterSpace2"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/blue" />
+                    android:background="#2196F3"
+                    android:gravity="center"
+                    android:textSize="36sp" />
 
                 <Space
                     android:layout_width="20dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <ImageView
+                <TextView
                     android:id="@+id/letterSpace3"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/blue" />
+                    android:background="#2196F3"
+                    android:gravity="center"
+                    android:textSize="36sp" />
 
                 <Space
                     android:layout_width="20dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <ImageView
+                <TextView
                     android:id="@+id/letterSpace4"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/blue" />
+                    android:background="#2196F3"
+                    android:gravity="center"
+                    android:textSize="36sp" />
 
             </LinearLayout>
 
@@ -96,6 +117,7 @@
     </TableLayout>
 
     <TableLayout
+        android:id="@+id/tableLayout"
         android:layout_width="400dp"
         android:layout_height="80dp"
         android:layout_marginStart="5dp"
@@ -119,53 +141,78 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <ImageView
+                <TextView
                     android:id="@+id/letter1"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/red" />
+                    android:background="#F44336"
+                    android:gravity="center"
+                    android:text="A"
+                    android:textSize="36sp" />
 
                 <Space
                     android:layout_width="20dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <ImageView
+                <TextView
                     android:id="@+id/letter2"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/red" />
+                    android:background="#F44336"
+                    android:gravity="center"
+                    android:text="B"
+                    android:textSize="36sp" />
 
                 <Space
                     android:layout_width="20dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <ImageView
+                <TextView
                     android:id="@+id/letter3"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/red" />
+                    android:background="#F44336"
+                    android:gravity="center"
+                    android:text="C"
+                    android:textSize="36sp" />
 
                 <Space
                     android:layout_width="20dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <ImageView
+                <TextView
                     android:id="@+id/letter4"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/red" />
+                    android:background="#F44336"
+                    android:gravity="center"
+                    android:text="D"
+                    android:textSize="36sp" />
 
             </LinearLayout>
 
         </TableRow>
 
     </TableLayout>
+
+    <Button
+        android:id="@+id/doneButton"
+        android:layout_width="119dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="146dp"
+        android:layout_marginTop="99dp"
+        android:layout_marginEnd="146dp"
+        android:onClick="checkFinished"
+        android:text="DONE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

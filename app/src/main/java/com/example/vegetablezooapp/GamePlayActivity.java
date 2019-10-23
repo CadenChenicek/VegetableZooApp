@@ -3,6 +3,7 @@ package com.example.vegetablezooapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ClipData;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -14,14 +15,20 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.Locale;
+import java.util.Random;
 
 public class GamePlayActivity extends AppCompatActivity {
     private static final long START_TIME_IN_MILLIS = 60000;
+    public static final String VEGETABLE = "veg";
+    private String veg;
 
     private TextView countdownText;
-    private ImageView char1, char2, char3, char4;
-    private ImageView space1, space2, space3, space4;
+    private TextView char1, char2, char3, char4;
+    private TextView space1, space2, space3, space4;
+    private Character[] vegLetterArray = new Character[4];
 
     private CountDownTimer countDownTimer;
     private long timeLeftInMillis = START_TIME_IN_MILLIS;
@@ -32,40 +39,247 @@ public class GamePlayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_play);
 
+        Intent intent = getIntent();
+        veg = intent.getStringExtra(VEGETABLE);
+        TextView test = (TextView) findViewById(R.id.test1);
+        test.setText(veg);
+
         countdownText = findViewById(R.id.countdownText);
         startTimer();
 
-        char1 = (ImageView) findViewById(R.id.letter1);
-        char2 = (ImageView) findViewById(R.id.letter2);
-        char3 = (ImageView) findViewById(R.id.letter3);
-        char4 = (ImageView) findViewById(R.id.letter4);
+        char1 = (TextView) findViewById(R.id.letter1);
+        char2 = (TextView) findViewById(R.id.letter2);
+        char3 = (TextView) findViewById(R.id.letter3);
+        char4 = (TextView) findViewById(R.id.letter4);
 
-        space1 = (ImageView) findViewById(R.id.letterSpace1);
-        space2 = (ImageView) findViewById(R.id.letterSpace2);
-        space3 = (ImageView) findViewById(R.id.letterSpace3);
-        space4 = (ImageView) findViewById(R.id.letterSpace4);
+        space1 = (TextView) findViewById(R.id.letterSpace1);
+        space2 = (TextView) findViewById(R.id.letterSpace2);
+        space3 = (TextView) findViewById(R.id.letterSpace3);
+        space4 = (TextView) findViewById(R.id.letterSpace4);
 
-        findViewById(R.id.letter1).setOnTouchListener(new MyTouchListener());
-        findViewById(R.id.letter2).setOnTouchListener(new MyTouchListener());
-        findViewById(R.id.letter3).setOnTouchListener(new MyTouchListener());
-        findViewById(R.id.letter4).setOnTouchListener(new MyTouchListener());
-        findViewById(R.id.letterSpace1).setOnDragListener(new MyDragListener());
-        findViewById(R.id.letterSpace2).setOnDragListener(new MyDragListener());
-        findViewById(R.id.letterSpace3).setOnDragListener(new MyDragListener());
-        findViewById(R.id.letterSpace4).setOnDragListener(new MyDragListener());
+        assignLetters();
 
-        /*
         char1.setOnLongClickListener(longclickListener);
         char2.setOnLongClickListener(longclickListener);
         char3.setOnLongClickListener(longclickListener);
         char4.setOnLongClickListener(longclickListener);
 
-        space1.setOnDragListener(dragListener);
-        space2.setOnDragListener(dragListener);
-        space3.setOnDragListener(dragListener);
-        space4.setOnDragListener(dragListener);
+        space1.setOnDragListener(dragListener1);
+        space2.setOnDragListener(dragListener2);
+        space3.setOnDragListener(dragListener3);
+        space4.setOnDragListener(dragListener4);
+    }
 
+    public void checkFinished(View v) {
+        TextView test = (TextView) findViewById(R.id.test1);
+        Character letter1 = veg.charAt(0);
+        Character letter2 = veg.charAt(1);
+        Character letter3 = veg.charAt(2);
+        Character letter4 = veg.charAt(3);
+        if (letter1.toString().equals(space1.getText()) && letter2.toString().equals(space2.getText()) &&
+                letter3.toString().equals(space3.getText()) && letter4.toString().equals(space4.getText())){
+            test.setText("NICE");
+        }
+        else{
+            test.setText("NOPE");
+        }
+        //Intent intent = new Intent(GamePlayActivity.this, GamePlayActivity.class);
+        //intent.putExtra(GamePlayActivity.VEGETABLE, veg);
+        //startActivity(intent);
+    }
+
+    public void assignLetters(){
+        int len = VEGETABLE.length();
+        for (int i = 0; i <= len; i++){
+            vegLetterArray[i] = veg.charAt(i);
+
+        }
+        //char1.setText(vegLetterArray[0].toString());
+        RandomizeArray(vegLetterArray);
+        char1.setText(vegLetterArray[0].toString());
+        char2.setText(vegLetterArray[1].toString());
+        char3.setText(vegLetterArray[2].toString());
+        char4.setText(vegLetterArray[3].toString());
+
+        /*
+        int random = new Random().nextInt(5) + 1;
+        if (random == 1){
+            char1.setText(vegLetterArray[0].toString());
+            int random2 = new Random().nextInt(4) + 1;
+            if (random2 == 1){
+                char2.setText(vegLetterArray[1].toString());
+                int random3 = new Random().nextInt(3) + 1;
+                if (random3 == 1){
+                    char3.setText(vegLetterArray[2].toString());
+                    char4.setText(vegLetterArray[3].toString());
+                }
+                else if (random3 == 2){
+                    char4.setText(vegLetterArray[2].toString());
+                    char3.setText(vegLetterArray[3].toString());
+                }
+            }
+            else if (random2 == 2){
+                char3.setText(vegLetterArray[1].toString());
+                int random3 = new Random().nextInt(3) + 1;
+                if (random3 == 1){
+                    char2.setText(vegLetterArray[2].toString());
+                    char4.setText(vegLetterArray[3].toString());
+                }
+                else if (random3 == 2){
+                    char4.setText(vegLetterArray[2].toString());
+                    char2.setText(vegLetterArray[3].toString());
+                }
+            }
+            else if (random2 == 3){
+                char4.setText(vegLetterArray[1].toString());
+                int random3 = new Random().nextInt(3) + 1;
+                if (random3 == 1){
+                    char2.setText(vegLetterArray[2].toString());
+                    char3.setText(vegLetterArray[3].toString());
+                }
+                else if (random3 == 2){
+                    char3.setText(vegLetterArray[2].toString());
+                    char2.setText(vegLetterArray[3].toString());
+                }
+            }
+        }
+        else if (random == 2){
+            char2.setText(vegLetterArray[0].toString());
+            int random2 = new Random().nextInt(4) + 1;
+            if (random2 == 1){
+                char1.setText(vegLetterArray[1].toString());
+                int random3 = new Random().nextInt(3) + 1;
+                if (random3 == 1){
+                    char3.setText(vegLetterArray[2].toString());
+                    char4.setText(vegLetterArray[3].toString());
+                }
+                else if (random3 == 2){
+                    char4.setText(vegLetterArray[2].toString());
+                    char3.setText(vegLetterArray[3].toString());
+                }
+            }
+            else if (random2 == 2){
+                char3.setText(vegLetterArray[1].toString());
+                int random3 = new Random().nextInt(3) + 1;
+                if (random3 == 1){
+                    char1.setText(vegLetterArray[2].toString());
+                    char4.setText(vegLetterArray[3].toString());
+                }
+                else if (random3 == 2){
+                    char4.setText(vegLetterArray[2].toString());
+                    char1.setText(vegLetterArray[3].toString());
+                }
+            }
+            else if (random2 == 3){
+                char4.setText(vegLetterArray[1].toString());
+                int random3 = new Random().nextInt(3) + 1;
+                if (random3 == 1){
+                    char1.setText(vegLetterArray[2].toString());
+                    char3.setText(vegLetterArray[3].toString());
+                }
+                else if (random3 == 2){
+                    char3.setText(vegLetterArray[2].toString());
+                    char1.setText(vegLetterArray[3].toString());
+                }
+            }
+        }
+        else if (random == 3){
+            char3.setText(vegLetterArray[0].toString());
+            int random2 = new Random().nextInt(4) + 1;
+            if (random2 == 1){
+                char1.setText(vegLetterArray[1].toString());
+                int random3 = new Random().nextInt(3) + 1;
+                if (random3 == 1){
+                    char2.setText(vegLetterArray[2].toString());
+                    char4.setText(vegLetterArray[3].toString());
+                }
+                else if (random3 == 2){
+                    char4.setText(vegLetterArray[2].toString());
+                    char3.setText(vegLetterArray[3].toString());
+                }
+            }
+            else if (random2 == 2){
+                char2.setText(vegLetterArray[1].toString());
+                int random3 = new Random().nextInt(3) + 1;
+                if (random3 == 1){
+                    char1.setText(vegLetterArray[2].toString());
+                    char4.setText(vegLetterArray[3].toString());
+                }
+                else if (random3 == 2){
+                    char4.setText(vegLetterArray[2].toString());
+                    char1.setText(vegLetterArray[3].toString());
+                }
+            }
+            else if (random2 == 3){
+                char4.setText(vegLetterArray[1].toString());
+                int random3 = new Random().nextInt(3) + 1;
+                if (random3 == 1){
+                    char1.setText(vegLetterArray[2].toString());
+                    char2.setText(vegLetterArray[3].toString());
+                }
+                else if (random3 == 2){
+                    char2.setText(vegLetterArray[2].toString());
+                    char1.setText(vegLetterArray[3].toString());
+                }
+            }
+        }
+        else if (random == 4){
+            char4.setText(vegLetterArray[0].toString());
+            int random2 = new Random().nextInt(4) + 1;
+            if (random2 == 1){
+                char1.setText(vegLetterArray[1].toString());
+                int random3 = new Random().nextInt(3) + 1;
+                if (random3 == 1){
+                    char2.setText(vegLetterArray[2].toString());
+                    char3.setText(vegLetterArray[3].toString());
+                }
+                else if (random3 == 2){
+                    char3.setText(vegLetterArray[2].toString());
+                    char2.setText(vegLetterArray[3].toString());
+                }
+            }
+            else if (random2 == 2){
+                char2.setText(vegLetterArray[1].toString());
+                int random3 = new Random().nextInt(3) + 1;
+                if (random3 == 1){
+                    char1.setText(vegLetterArray[2].toString());
+                    char3.setText(vegLetterArray[3].toString());
+                }
+                else if (random3 == 2){
+                    char3.setText(vegLetterArray[2].toString());
+                    char1.setText(vegLetterArray[3].toString());
+                }
+            }
+            else if (random2 == 3){
+                char3.setText(vegLetterArray[1].toString());
+                int random3 = new Random().nextInt(3) + 1;
+                if (random3 == 1){
+                    char1.setText(vegLetterArray[2].toString());
+                    char2.setText(vegLetterArray[3].toString());
+                }
+                else if (random3 == 2){
+                    char2.setText(vegLetterArray[2].toString());
+                    char1.setText(vegLetterArray[3].toString());
+                }
+            }
+        }
          */
+
+
+
+    }
+
+    public static Character[] RandomizeArray(Character[] array){
+        Random rgen = new Random();  // Random number generator
+
+        for (int i=0; i<array.length; i++) {
+            int randomPosition = rgen.nextInt(array.length);
+            Character temp = array[i];
+            array[i] = array[randomPosition];
+            array[randomPosition] = temp;
+        }
+
+        return array;
     }
 
     private final class MyTouchListener implements View.OnTouchListener {
@@ -145,7 +359,6 @@ public class GamePlayActivity extends AppCompatActivity {
         countdownText.setText(timeLeftFormatted);
     }
 
-    /*
     View.OnLongClickListener longclickListener = new View.OnLongClickListener(){
         @Override
         public boolean onLongClick(View v) {
@@ -156,7 +369,7 @@ public class GamePlayActivity extends AppCompatActivity {
         }
     };
 
-    View.OnDragListener dragListener = new View.OnDragListener() {
+    View.OnDragListener dragListener1 = new View.OnDragListener() {
         @Override
         public boolean onDrag(View v, DragEvent event) {
             int dragEvent = event.getAction();
@@ -188,13 +401,97 @@ public class GamePlayActivity extends AppCompatActivity {
         }
     };
 
-     */
+    View.OnDragListener dragListener2 = new View.OnDragListener() {
+        @Override
+        public boolean onDrag(View v, DragEvent event) {
+            int dragEvent = event.getAction();
 
-    // Assign the touch listener to your view which you want to move
+            switch (dragEvent){
+                case DragEvent.ACTION_DRAG_ENTERED:
+                    final View view = (View) event.getLocalState();
 
+                    if (view.getId() == R.id.letter1){
+                        space2.setText(char1.getText());
+                    }
+                    else if (view.getId() == R.id.letter2){
+                        space2.setText(char2.getText());
+                    }
+                    else if (view.getId() == R.id.letter3){
+                        space2.setText(char3.getText());
+                    }
+                    else if (view.getId() == R.id.letter4){
+                        space2.setText(char4.getText());
+                    }
+                    break;
+                case DragEvent.ACTION_DRAG_EXITED:
+                    break;
+                case DragEvent.ACTION_DROP:
+                    break;
+            }
 
-    // This defines your touch listener
+            return true;
+        }
+    };
+    View.OnDragListener dragListener3 = new View.OnDragListener() {
+        @Override
+        public boolean onDrag(View v, DragEvent event) {
+            int dragEvent = event.getAction();
 
+            switch (dragEvent){
+                case DragEvent.ACTION_DRAG_ENTERED:
+                    final View view = (View) event.getLocalState();
 
+                    if (view.getId() == R.id.letter1){
+                        space3.setText(char1.getText());
+                    }
+                    else if (view.getId() == R.id.letter2){
+                        space3.setText(char2.getText());
+                    }
+                    else if (view.getId() == R.id.letter3){
+                        space3.setText(char3.getText());
+                    }
+                    else if (view.getId() == R.id.letter4){
+                        space3.setText(char4.getText());
+                    }
+                    break;
+                case DragEvent.ACTION_DRAG_EXITED:
+                    break;
+                case DragEvent.ACTION_DROP:
+                    break;
+            }
+
+            return true;
+        }
+    };
+    View.OnDragListener dragListener4 = new View.OnDragListener() {
+        @Override
+        public boolean onDrag(View v, DragEvent event) {
+            int dragEvent = event.getAction();
+
+            switch (dragEvent){
+                case DragEvent.ACTION_DRAG_ENTERED:
+                    final View view = (View) event.getLocalState();
+
+                    if (view.getId() == R.id.letter1){
+                        space4.setText(char1.getText());
+                    }
+                    else if (view.getId() == R.id.letter2){
+                        space4.setText(char2.getText());
+                    }
+                    else if (view.getId() == R.id.letter3){
+                        space4.setText(char3.getText());
+                    }
+                    else if (view.getId() == R.id.letter4){
+                        space4.setText(char4.getText());
+                    }
+                    break;
+                case DragEvent.ACTION_DRAG_EXITED:
+                    break;
+                case DragEvent.ACTION_DROP:
+                    break;
+            }
+
+            return true;
+        }
+    };
 }
-
