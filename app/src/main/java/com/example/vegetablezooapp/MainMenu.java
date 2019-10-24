@@ -54,4 +54,9 @@ public class MainMenu extends AppCompatActivity {
         intent.putExtra(GamePlayActivity.VEGETABLE, veg);
         startActivity(intent);
     }
+
+    public void clickInstruct(View v) {
+        Intent intent = new Intent(MainMenu.this, InstructActivity.class);
+        startActivity(intent);
+    }
 }
